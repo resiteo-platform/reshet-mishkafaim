@@ -1,0 +1,4 @@
+import React from 'react';
+import {MapPin,House,Phone,ChevronLeft} from 'lucide-react';
+import {branches} from '../data';
+export default function BranchCards({openBooking,expanded=false}){return <div className="branch-grid">{branches.map((b,i)=><article className="branch-card" key={b.id}><div className="branch-copy"><h3><MapPin size={21}/>{b.name}</h3><p><House size={19}/>{b.address}</p><a className="phone" href={'tel:'+b.phone.replaceAll('-','')}><Phone size={18}/><bdi>{b.phone}</bdi></a><a className="outline-button" target="_blank" rel="noopener noreferrer" href={'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(b.address+' '+b.name)}>ניווט לסניף <ChevronLeft size={18}/></a>{expanded&&<button className="text-button" onClick={()=>openBooking({branch:b.id})}>קביעת תור בסניף ←</button>}</div><div className={'shop-photo shop-'+i}><img src="/assets/shop.png" alt="חלל חנות אופטיקה — להמחשה"/><span>להמחשה</span></div></article>)}</div>}

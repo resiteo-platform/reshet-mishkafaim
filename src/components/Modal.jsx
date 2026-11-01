@@ -1,0 +1,3 @@
+import React,{useEffect,useRef} from 'react';
+import {X} from 'lucide-react';
+export default function Modal({title,close,children,wide=false}){const ref=useRef();useEffect(()=>{const d=ref.current;d.showModal();document.body.classList.add('modal-open');return()=>{d.close();document.body.classList.remove('modal-open')}},[]);return <dialog ref={ref} className={'modal '+(wide?'wide-modal':'')} onCancel={e=>{e.preventDefault();close()}} onClick={e=>{if(e.target===ref.current){const r=ref.current.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close()}}} aria-label={title}><div className="modal-heading"><h2>{title}</h2><button className="icon-button" onClick={close} aria-label="סגירה"><X/></button></div>{children}</dialog>}

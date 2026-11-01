@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:3000"
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env (at least 16 characters)}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    volumes:
+      - bookings:/data
+    restart: unless-stopped
+volumes:
+  bookings:
